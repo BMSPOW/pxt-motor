@@ -6,7 +6,7 @@ load dependency
 */
 
 
-//% color="#019858" weight=10 icon="\uf0f9"
+//% color="#019858" weight=10 icon="\uf836"
 namespace bmsmotor {
     const PCA9685_ADDRESS = 0x40
     const MODE1 = 0x00
@@ -203,18 +203,6 @@ namespace bmsmotor {
     }
 
 
-    /**
-     * Init RGB pixels mounted on bmsmotor
-     */
-    //% blockId="bmsmotor_rgb" block="RGBE"
-    //% weight=5
-    export function rgb(): neopixel.Strip {
-        if (!neoStrip) {
-            neoStrip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
-        }
-
-        return neoStrip;
-    }
 
     /**
      * Servo Execute
@@ -235,129 +223,9 @@ namespace bmsmotor {
         setPwm(index + 7, 0, value)
     }
 
-    /**
-     * Geek Servo
-     * @param index Servo Channel; eg: S1
-     * @param degree [-45-225] degree of servo; eg: -45, 90, 225
-    */
-    //% blockId=bmsmotor_gservo block="Geek Servo|%index|degree %degree"
-    //% weight=99
-    //% degree.min=-45 degree.max=225
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function GeekServo(index: Servos, degree: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        // 50hz: 20,000 us
-        let v_us = ((degree - 90) * 20 / 3 + 1500) // 0.6 ~ 2.4
-        let value = v_us * 4096 / 20000
-        setPwm(index + 7, 0, value)
-    }
-
-        /**
-     * GeekServo2KG
-     * @param index Servo Channel; eg: S1
-     * @param degree [0-360] degree of servo; eg: 0, 180, 360
-    */
-    //% blockId=bmsmotor_gservo2kg block="GeekServo2KG|%index|degree %degree"
-    //% weight=98
-    //% blockGap=50
-    //% degree.min=0 degree.max=360
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function GeekServo2KG(index: Servos, degree: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        // 50hz: 20,000 us
-        //let v_us = (degree * 2000 / 360 + 500)  0.5 ~ 2.5
-        let v_us = (Math.floor((degree) * 2000 / 350) + 500) //fixed
-        let value = v_us * 4096 / 20000
-        setPwm(index + 7, 0, value)
-    }
-
-    //% blockId=bmsmotor_stepper_degree block="Stepper 28BYJ-48|%index|degree %degree"
-    //% weight=90
-    export function StepperDegree(index: Steppers, degree: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        setStepper(index, degree > 0);
-        degree = Math.abs(degree);
-        basic.pause(10240 * degree / 360);
-        MotorStopAll()
-    }
 
 
-    //% blockId=bmsmotor_stepper_turn block="Stepper 28BYJ-48|%index|turn %turn"
-    //% weight=90
-    export function StepperTurn(index: Steppers, turn: Turns): void {
-        let degree = turn;
-        StepperDegree(index, degree);
-    }
-
-    //% blockId=bmsmotor_stepper_dual block="Dual Stepper(Degree) |M1 %degree1| M2 %degree2"
-    //% weight=89
-    export function StepperDual(degree1: number, degree2: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        setStepper(1, degree1 > 0);
-        setStepper(2, degree2 > 0);
-        degree1 = Math.abs(degree1);
-        degree2 = Math.abs(degree2);
-        basic.pause(10240 * Math.min(degree1, degree2) / 360);
-        if (degree1 > degree2) {
-            stopMotor(3); stopMotor(4);
-            basic.pause(10240 * (degree1 - degree2) / 360);
-        } else {
-            stopMotor(1); stopMotor(2);
-            basic.pause(10240 * (degree2 - degree1) / 360);
-        }
-
-        MotorStopAll()
-    }
-
-    /**
-     * Stepper Car move forward
-     * @param distance Distance to move in cm; eg: 10, 20
-     * @param diameter diameter of wheel in mm; eg: 48
-    */
-    //% blockId=bmsmotor_stpcar_move block="Car Forward|Distance(cm) %distance|Wheel Diameter(mm) %diameter"
-    //% weight=88
-    export function StpCarMove(distance: number, diameter: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        let delay = 10240 * 10 * distance / 3 / diameter; // use 3 instead of pi
-        setStepper(1, delay > 0);
-        setStepper(2, delay > 0);
-        delay = Math.abs(delay);
-        basic.pause(delay);
-        MotorStopAll()
-    }
-
-    /**
-     * Stepper Car turn by degree
-     * @param turn Degree to turn; eg: 90, 180, 360
-     * @param diameter diameter of wheel in mm; eg: 48
-     * @param track track width of car; eg: 125
-    */
-    //% blockId=bmsmotor_stpcar_turn block="Car Turn|Degree %turn|Wheel Diameter(mm) %diameter|Track(mm) %track"
-    //% weight=87
-    //% blockGap=50
-    export function StpCarTurn(turn: number, diameter: number, track: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        let delay = 10240 * turn * track / 360 / diameter;
-        setStepper(1, delay < 0);
-        setStepper(2, delay > 0);
-        delay = Math.abs(delay);
-        basic.pause(delay);
-        MotorStopAll()
-    }
-
-    //% blockId=bmsmotor_motor_run block="Motor|%index|speed %speed"
+    //% blockId=bmsmotor_motor_run block="BMS_Motor|%index|speed %speed"
     //% weight=85
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4

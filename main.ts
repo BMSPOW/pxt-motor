@@ -36,15 +36,6 @@ namespace bmsmotor {
     const STP_CHD_L = 3071
     const STP_CHD_H = 1023
 
-    // HT16K33 commands
-    const HT16K33_ADDRESS = 0x70
-    const HT16K33_BLINK_CMD = 0x80
-    const HT16K33_BLINK_DISPLAYON = 0x01
-    const HT16K33_BLINK_OFF = 0
-    const HT16K33_BLINK_2HZ = 1
-    const HT16K33_BLINK_1HZ = 2
-    const HT16K33_BLINK_HALFHZ = 3
-    const HT16K33_CMD_BRIGHTNESS = 0xE0
 
     export enum Servos {
         S1 = 0x01,
@@ -64,36 +55,16 @@ namespace bmsmotor {
         M2B = 0x4
     }
 
-    export enum Steppers {
-        M1 = 0x1,
-        M2 = 0x2
-    }
 
     export enum SonarVersion {
         V1 = 0x1,
         V2 = 0x2
     }
 
-    export enum Turns {
-        //% blockId="T1B4" block="1/4"
-        T1B4 = 90,
-        //% blockId="T1B2" block="1/2"
-        T1B2 = 180,
-        //% blockId="T1B0" block="1"
-        T1B0 = 360,
-        //% blockId="T2B0" block="2"
-        T2B0 = 720,
-        //% blockId="T3B0" block="3"
-        T3B0 = 1080,
-        //% blockId="T4B0" block="4"
-        T4B0 = 1440,
-        //% blockId="T5B0" block="5"
-        T5B0 = 1800
-    }
+
 
     let initialized = false
     let initializedMatrix = false
-    let neoStrip: neopixel.Strip;
     let matBuf = pins.createBuffer(17);
     let distanceBuf = 0;
 
@@ -158,48 +129,11 @@ namespace bmsmotor {
     }
 
 
-    function setStepper(index: number, dir: boolean): void {
-        if (index == 1) {
-            if (dir) {
-                setPwm(0, STP_CHA_L, STP_CHA_H);
-                setPwm(2, STP_CHB_L, STP_CHB_H);
-                setPwm(1, STP_CHC_L, STP_CHC_H);
-                setPwm(3, STP_CHD_L, STP_CHD_H);
-            } else {
-                setPwm(3, STP_CHA_L, STP_CHA_H);
-                setPwm(1, STP_CHB_L, STP_CHB_H);
-                setPwm(2, STP_CHC_L, STP_CHC_H);
-                setPwm(0, STP_CHD_L, STP_CHD_H);
-            }
-        } else {
-            if (dir) {
-                setPwm(4, STP_CHA_L, STP_CHA_H);
-                setPwm(6, STP_CHB_L, STP_CHB_H);
-                setPwm(5, STP_CHC_L, STP_CHC_H);
-                setPwm(7, STP_CHD_L, STP_CHD_H);
-            } else {
-                setPwm(7, STP_CHA_L, STP_CHA_H);
-                setPwm(5, STP_CHB_L, STP_CHB_H);
-                setPwm(6, STP_CHC_L, STP_CHC_H);
-                setPwm(4, STP_CHD_L, STP_CHD_H);
-            }
-        }
-    }
+
 
     function stopMotor(index: number) {
         setPwm((index - 1) * 2, 0, 0);
         setPwm((index - 1) * 2 + 1, 0, 0);
-    }
-
-    function matrixInit() {
-        i2ccmd(HT16K33_ADDRESS, 0x21);// turn on oscillator
-        i2ccmd(HT16K33_ADDRESS, HT16K33_BLINK_CMD | HT16K33_BLINK_DISPLAYON | (0 << 1));
-        i2ccmd(HT16K33_ADDRESS, HT16K33_CMD_BRIGHTNESS | 0xF);
-    }
-
-    function matrixShow() {
-        matBuf[0] = 0x00;
-        pins.i2cWriteBuffer(HT16K33_ADDRESS, matBuf);
     }
 
 

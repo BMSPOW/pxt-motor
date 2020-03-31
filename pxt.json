@@ -1,0 +1,17 @@
+{
+    "name": "BMSPOW-1610",
+    "version": "0.3.5",
+    "description": "BMSPOW-1610",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "neopixel": "github:kittenbot/pxt-neopixel#v0.6.15"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "_locales/zh/motor-strings.json"
+    ],
+    "public": true,
+    "preferredEditor": "tsprj"
+}

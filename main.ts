@@ -6,7 +6,7 @@ load dependency
 */
 
 
-//% color="#019858" weight=10 icon="\uf"
+//% color="#019858" weight=10 icon="\uf0f9"
 namespace bmsmotor {
     const PCA9685_ADDRESS = 0x40
     const MODE1 = 0x00

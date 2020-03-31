@@ -4,7 +4,8 @@
     "description": "BMSPOW-1700",
     "license": "MIT",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "neopixel": "github:kittenbot/pxt-neopixel#v0.6.15"
     },
     "files": [
         "README.md",

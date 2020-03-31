@@ -12,5 +12,5 @@
         "main.ts",
         "_locales/zh/motor-strings.json"
     ],
-    "public": true,
+    "public": true
 }

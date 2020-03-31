@@ -1,0 +1,19 @@
+﻿{
+    "bmsmotor.Servo|block": "舵機|%index|角度 %degree",
+    "bmsmotor.GeekServo|block": "Geekservo|舵機|%index|角度 %degree",
+    "bmsmotor.GeekServo2KG|block": "2KG舵機|%index|角度 %degree",
+    "bmsmotor.StepperDegree|block": "步進 28BYJ-48|%index|角度 %degree",
+    "bmsmotor.StepperTurn|block": "步進 28BYJ-48|%index|圈數 %turn",
+    "bmsmotor.StepperDual|block": "雙步進(角度) |M1 %degree1| M2 %degree2",
+    "bmsmotor.StpCarMove|block": "步進小車 前進 |距離(cm) %distance|輪直徑(mm) %diameter",
+    "bmsmotor.StpCarTurn|block": "步進小車 轉向 |角度 %turn|輪直徑(mm) %diameter|輪距(mm) %track",
+    "bmsmotor.MotorRun|block": "馬達|%index|速度 %speed",
+    "bmsmotor.MotorRunDual|block": "馬達|%motor1|速度 %speed1|%motor2|速度 %speed2",
+    "bmsmotor.MotorRunDelay|block": "馬達|%index|速度 %speed|延時 %delay|s",
+    "bmsmotor.MotorStop|block": "馬達 停止|%index|",
+    "bmsmotor.MotorStopAll|block": "停止所有馬達",
+    "bmsmotor.RgbUltrasonic|block": "貓耳RGB超聲波|腳位 %pin",
+    "bmsmotor.HoleUltrasonic|block": "貓耳洞超聲波|腳位 %pin",
+    "bmsmotor.MatrixDraw|block": "LED矩陣 描點|X %x|Y %y",
+    "bmsmotor.MatrixClear|block": "清空 LED矩陣"
+}

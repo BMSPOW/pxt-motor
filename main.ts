@@ -179,7 +179,7 @@ namespace bmsmotor {
      * @param index Motor Index; eg: M1A, M2A
      * @param speed [-255-255] speed of motor;
      */
-    //% blockId=bmsmotor_car_run block="Car-Run|speed %speed|"
+    //% blockId=bmsmotor_car_runs block="Car-Run|speed %speed|s"
     //% weight=95
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4

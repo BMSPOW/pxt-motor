@@ -168,6 +168,36 @@ namespace bmsmotor {
     }
 
 
+   /**
+     * Execute Car Run with speed
+     * @param index Motor Index; eg: M1A, M2A
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_runs block="Car Run|speed %speed|"
+    //% weight=95
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarRunwithspeed(speed: number): void {
+        MotorRunDual(1, speed, 3, speed);
+    }
+
+
+    /**
+     * Execute Car Run with delay stop
+     * @param speed [-255-255] speed of motor;
+     * @param delay seconde delay to stop; eg: 1
+     */
+    //% blockId=bmsmotor_car_run_with_delay block="Car Run|speed %speed|delay %delay|s"
+    //% weight=94
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarRunwithdelay(speed: number, delay: number): void {
+        MotorRunDual(1, speed, 3, speed);
+        basic.pause(delay * 1000);
+        MotorStopAll();
+    }
+
+
 
 
 

@@ -163,7 +163,7 @@ namespace bmsmotor {
     //% blockId=bmsmotor_carstop block="Car Stop|"
     //% weight=96
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function CarStop: void {
+    export function CarStop(): void {
         MotorStopAll();
     }
 

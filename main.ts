@@ -215,7 +215,7 @@ namespace bmsmotor {
      * @param degree [0-180] degree of servo; eg: 0, 90, 180
     */
     //% blockId=bmsmotor_servo block="Servomotor|%index|degree %degree"
-    //% weight=100
+    //% weight=20
     //% degree.min=0 degree.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Servo(index: Servos, degree: number): void {

@@ -183,20 +183,6 @@ namespace bmsmotor {
     }
 
 
-    /**
-     * Execute Car Run with delay stop
-     * @param speed [-255-255] speed of motor; eg: 150, -150
-     * @param delay seconde delay to stop; eg: 1
-     */
-    //% blockId=bmsmotor_car_rund block="Car Run|speed %speed|delay %delay|s"
-    //% weight=94
-    //% speed.min=-255 speed.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function CarRunwithdelay(speed: number, delay: number): void {
-        MotorRunDual(1, speed, 3, speed);
-        basic.pause(delay * 1000);
-        MotorStopAll();
-    }
 
 
 

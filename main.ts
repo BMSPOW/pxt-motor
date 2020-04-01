@@ -169,23 +169,17 @@ namespace bmsmotor {
 
 
 
-
     /**
      * Execute Car Run with speed
      * @param speed [-255-255] speed of car; eg: 150, -150
      */
-    //% blockId=bmsmotor_car_runs block="Car Run|speed %speed|"
+    //% blockId=bms_car_runs block="Car Run|speed %speed|"
     //% weight=95
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function CarRunwithspeed(speed: number): void {
         MotorRunDual(1, speed, 3, speed);
     }
-
-
-
-
-
 
 
 

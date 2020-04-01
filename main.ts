@@ -124,6 +124,28 @@ namespace bmsmotor {
 
 
 
+
+    /**
+     * Execute Car Run nonstop
+     * @param index Motor Index; eg: M1A, M2A
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_run block="Car-Run|speed %speed|"
+    //% weight=96
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function MotorRunDelay(index: Motors, speed: number, delay: number): void {
+        MotorRunDual(1, speed, 2, speed);
+    }
+
+
+
+
+
+
+
+
+
     //% blockId=bmsmotor_motor_run block="BMS_Motor|%index|speed %speed"
     //% weight=85
     //% speed.min=-255 speed.max=255

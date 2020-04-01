@@ -198,6 +198,30 @@ namespace bmsmotor {
     }
 
 
+    /**
+     * Execute Car Turn Left with speed
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_turn_left_S block="Car Turn Left|speed %speed|"
+    //% weight=93
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnLeftS(speed: number): void {
+        MotorRunDual(1, 0, 3, speed);
+    }
+
+
+    /**
+     * Execute Car Turn Right with speed
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_turn_right_S block="Car Turn Right|speed %speed|"
+    //% weight=92
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnRightS(speed: number): void {
+        MotorRunDual(1, speed, 3, 0);
+    }
 
 
 

@@ -154,31 +154,13 @@ namespace bmsmotor {
 
 
     /**
-     * Execute two motors at the same time
-     * @param motor1 First Motor; eg: M1A, M1B
-     * @param speed1 [-255-255] speed of motor; eg: 150, -150
-     * @param motor2 Second Motor; eg: M2A, M2B
-     * @param speed2 [-255-255] speed of motor; eg: 150, -150
-    */
-    //% blockId=bmsmotor_motor_dual block="Motor|%motor1|speed %speed1|%motor2|speed %speed2"
-    //% weight=84
-    //% speed1.min=-255 speed1.max=255
-    //% speed2.min=-255 speed2.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function MotorRunDual(motor1: Motors, speed1: number, motor2: Motors, speed2: number): void {
-        MotorRun(motor1, speed1);
-        MotorRun(motor2, speed2);
-    }
-
-
-    /**
      * Execute single motors with delay
      * @param index Motor Index; eg: M1A, M1B, M2A, M2B
      * @param speed [-255-255] speed of motor; eg: 150, -150
      * @param delay seconde delay to stop; eg: 1
-    */
+     */
     //% blockId=bmsmotor_motor_rundelay block="Motor|%index|speed %speed|delay %delay|s"
-    //% weight=81
+    //% weight=83
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRunDelay(index: Motors, speed: number, delay: number): void {
@@ -188,15 +170,37 @@ namespace bmsmotor {
     }
 
 
+    /**
+     * Execute two motors at the same time
+     * @param motor1 First Motor; eg: M1A, M1B
+     * @param speed1 [-255-255] speed of motor; eg: 150, -150
+     * @param motor2 Second Motor; eg: M2A, M2B
+     * @param speed2 [-255-255] speed of motor; eg: 150, -150
+    */
+    //% blockId=bmsmotor_motor_dual block="Motor|%motor1|speed %speed1|%motor2|speed %speed2"
+    //% weight=81
+    //% speed1.min=-255 speed1.max=255
+    //% speed2.min=-255 speed2.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function MotorRunDual(motor1: Motors, speed1: number, motor2: Motors, speed2: number): void {
+        MotorRun(motor1, speed1);
+        MotorRun(motor2, speed2);
+    }
+
+
+
+
+
 
     //% blockId=bmsmotor_stop block="Motor Stop|%index|"
-    //% weight=80
+    //% weight=79
     export function MotorStop(index: Motors): void {
         MotorRun(index, 0);
     }
 
+
     //% blockId=bmsmotor_stop_all block="Motor Stop All"
-    //% weight=79
+    //% weight=77
     //% blockGap=50
     export function MotorStopAll(): void {
         if (!initialized) {
@@ -215,7 +219,7 @@ namespace bmsmotor {
      * @param degree [0-180] degree of servo; eg: 0, 90, 180
     */
     //% blockId=bmsmotor_servo block="Servomotor|%index|degree %degree"
-    //% weight=20
+    //% weight=60
     //% degree.min=0 degree.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Servo(index: Servos, degree: number): void {

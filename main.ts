@@ -134,7 +134,7 @@ namespace bmsmotor {
     //% weight=96
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function MotorRunDelay(index: Motors, speed: number, delay: number): void {
+    export function CarRun(speed: number): void {
         MotorRunDual(1, speed, 2, speed);
     }
 

@@ -1,7 +1,7 @@
 {
     "name": "BMSPOW-motor",
     "version": "0.3.5",
-    "description": "BMSPOW-04011430",
+    "description": "BMSPOW-04011442",
     "license": "MIT",
     "dependencies": {
         "core": "*"

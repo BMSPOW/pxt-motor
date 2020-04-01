@@ -126,16 +126,108 @@ namespace bmsmotor {
 
 
     /**
-     * Execute Car Run nonstop
+     * Execute Car Run
+     * @param index Motor Index; eg: M1A, M2A
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_run block="Car-Run|"
+    //% weight=99
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarRun(): void {
+        MotorRunDual(1, 255, 3, 255);
+    }
+
+
+
+    /**
+     * Execute Car Turn Left
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_turn_left block="Car Turn Left|"
+    //% weight=98
+     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnLeft(): void {
+        MotorRunDual(1, 0, 3, 255);
+    }
+
+
+    /**
+     * Execute Car Turn Right
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_turn_right block="Car Turn Right|"
+    //% weight=97
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnRight(): void {
+        MotorRunDual(1, 255, 3, 0);
+    }
+
+
+    /**
+     * Execute Car stop
+     */
+    //% blockId=bmsmotor_carstop block="Car Stop"
+    //% weight=96
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarStop: void {
+        MotorStopAll();
+    }
+
+
+    /**
+     * Execute Car Run with speed
      * @param index Motor Index; eg: M1A, M2A
      * @param speed [-255-255] speed of motor;
      */
     //% blockId=bmsmotor_car_run block="Car-Run|speed %speed|"
-    //% weight=96
+    //% weight=95
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function CarRun(speed: number): void {
+    export function CarRunwithspeed(speed: number): void {
         MotorRunDual(1, speed, 3, speed);
+    }
+
+
+    /**
+     * Execute Car Run with delay stop
+     * @param index Motor Index; eg: M1A, M2A
+     * @param speed [-255-255] speed of motor;
+     * @param delay seconde delay to stop; eg: 1
+     */
+    //% blockId=bmsmotor_car_run_with_delay block="Car-Run|speed %speed|delay %delay|s"
+    //% weight=94
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarRunwithdelay(speed: number): void {
+        MotorRunDual(1, speed, 3, speed);
+        basic.pause(delay * 1000);
+        MotorStopAll();
+    }
+
+
+    /**
+     * Execute Car Turn Left with speed
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_turn_left_S block="Car Turn Left|speed %speed|"
+    //% weight=93
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnLeftS(speed: number): void {
+        MotorRunDual(1, 0, 3, speed);
+    }
+
+
+    /**
+     * Execute Car Turn Right with speed
+     * @param speed [-255-255] speed of motor;
+     */
+    //% blockId=bmsmotor_car_turn_right_S block="Car Turn Right|speed %speed|"
+    //% weight=92
+    //% speed.min=-255 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnRightS(speed: number): void {
+        MotorRunDual(1, speed, 3, 0);
     }
 
 
@@ -143,11 +235,8 @@ namespace bmsmotor {
 
 
 
-
-
-
     //% blockId=bmsmotor_motor_run block="BMS_Motor|%index|speed %speed"
-    //% weight=85
+    //% weight=89
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: Motors, speed: number): void {
@@ -182,7 +271,7 @@ namespace bmsmotor {
      * @param delay seconde delay to stop; eg: 1
      */
     //% blockId=bmsmotor_motor_rundelay block="Motor|%index|speed %speed|delay %delay|s"
-    //% weight=83
+    //% weight=88
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRunDelay(index: Motors, speed: number, delay: number): void {
@@ -200,7 +289,7 @@ namespace bmsmotor {
      * @param speed2 [-255-255] speed of motor; eg: 150, -150
     */
     //% blockId=bmsmotor_motor_dual block="Motor|%motor1|speed %speed1|%motor2|speed %speed2"
-    //% weight=81
+    //% weight=87
     //% speed1.min=-255 speed1.max=255
     //% speed2.min=-255 speed2.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -215,14 +304,14 @@ namespace bmsmotor {
 
 
     //% blockId=bmsmotor_stop block="Motor Stop|%index|"
-    //% weight=79
+    //% weight=85
     export function MotorStop(index: Motors): void {
         MotorRun(index, 0);
     }
 
 
     //% blockId=bmsmotor_stop_all block="Motor Stop All"
-    //% weight=77
+    //% weight=84
     //% blockGap=50
     export function MotorStopAll(): void {
         if (!initialized) {
@@ -241,7 +330,7 @@ namespace bmsmotor {
      * @param degree [0-180] degree of servo; eg: 0, 90, 180
     */
     //% blockId=bmsmotor_servo block="Servomotor|%index|degree %degree"
-    //% weight=60
+    //% weight=70
     //% degree.min=0 degree.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Servo(index: Servos, degree: number): void {

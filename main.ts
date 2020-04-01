@@ -135,7 +135,26 @@ namespace bmsmotor {
         MotorRunDual(1, 255, 3, 255);
     }
 
+    /**
+     * Execute Car Turn Left
+     */
+    //% blockId=bmsmotor_car_left block="Car Turn Left|"
+    //% weight=98
+     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnLeft(): void {
+        MotorRunDual(1, 0, 3, 255);
+    }
 
+
+    /**
+     * Execute Car Turn Right
+      */
+    //% blockId=bmsmotor_car_right block="Car Turn Right|"
+    //% weight=97
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarTurnRight(): void {
+        MotorRunDual(1, 255, 3, 0);
+    }
 
 
 
